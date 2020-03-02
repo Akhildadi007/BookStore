@@ -1,12 +1,7 @@
-// Angular Component Classes
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
-// Redux related imports
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { selectAllCollectionItems } from '../../reducers/collection.reducer';
-
-// Dev Models
 import { Book } from '../../models/book';
 
 @Component({
@@ -15,12 +10,8 @@ import { Book } from '../../models/book';
   styleUrls: ['./my-book-collection.component.css']
 })
 export class MyBookCollectionComponent implements OnInit, OnDestroy {
-  // variable to show all user collections
   public collectionBooks: Book[];
-
-  // Varible to store subscription of collection data
   private collectionSub: Subscription;
-
   constructor(private store: Store<{CollectionState}>) { }
 
   ngOnInit() {
@@ -35,7 +26,7 @@ export class MyBookCollectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // UnSubscribing all redux sub
+    // UnSubscribing to avoid memory leaks
     if( this.collectionSub ){
       this.collectionSub.unsubscribe();
     }
