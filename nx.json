@@ -1,0 +1,22 @@
+{
+  "npmScope": "my-book-shoping-store",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "book-store": {
+      "tags": []
+    },
+    "book-store-e2e": {
+      "tags": [],
+      "implicitDependencies": ["book-store"]
+    }
+  }
+}
