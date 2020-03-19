@@ -2,18 +2,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-// NGRX / Redux Imports
+// Store related Modules/Imports
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-// Redux( Actions / Reducers ) Imports
+// store actions/reducers imports
 import { FetchBooks } from '../../actions/book.actions';
 import { AddToSearchListAction } from '../../actions/search.actions';
 import { selectCartIds } from '../../reducers/cart.reducer';
 import { selectCollectionIds } from '../../reducers/collection.reducer';
 import { ReduceMappers } from '../../reducers/mapper';
 
-// Dev Models and Enums
+// Models
 import { Book } from '../.././models/book';
 
 @Component({
@@ -88,12 +88,12 @@ export class BookSearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  getStoreRef(){
+  getStoreRef():Store<{ booksList: Book[], apiError: any, cartList: any, searchList: string[]}> {
     return this.store;
   }
 
   ngOnDestroy() {
-    // Unsubscribing all redux subscriptions
+    // Unsubscribing all redux subscriptions to avoid memory leaks
     if( this.booksListSub ) {
       this.booksListSub.unsubscribe();
       this.booksFetchSub.unsubscribe();

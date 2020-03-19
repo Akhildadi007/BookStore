@@ -21,7 +21,7 @@ export class MyBookCollectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  getStoreRef() {
+  getStoreRef():Store<{CollectionState}> {
     return this.store;
   }
 

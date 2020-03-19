@@ -2,13 +2,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-// Redux Modules/Imports
+// Redux Modules
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+
 import { AddBookToCartAction, RemoveBookFromCartAction } from '../../actions/cart.actions';
 import { selectCollectionIds } from '../../reducers/collection.reducer';
 
-// Dev Models and Enums
+//Models
 import { Book } from '../../models/book';
 import { ReduceMappers } from '../../reducers/mapper';
 
@@ -31,7 +32,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   public itemBought: boolean;
   public collectionIds: string[] | number[];
 
-  // redux Obbservables
+  // redux Observables
   private booksListSub: Subscription;
   private cartObjSub: Subscription;
   private collectionSub: Subscription;
@@ -116,7 +117,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Unsubscribing redux subscribers
+    // Unsubscribing redux subscribers to avoid memory leaks
     if( this.booksListSub ) {
       this.booksListSub.unsubscribe();
       this.cartObjSub.unsubscribe();
@@ -124,7 +125,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  getStoreRef(){
+  getStoreRef(): Store<{ booksList: Book[], cartList: any  }>{
     return this.store;
   }
 

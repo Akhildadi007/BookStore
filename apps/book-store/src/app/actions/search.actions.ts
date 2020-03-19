@@ -7,7 +7,7 @@ export enum SearchActionTypes {
 }
 
 export class SearchAction implements Action {
-    readonly type;
+    readonly type:string;
     newSearch?: any;
 }
 

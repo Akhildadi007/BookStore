@@ -1,9 +1,11 @@
+//Angular Modules
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
-// store related imports
+// store related modules/imports
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+
 import { RemoveBookFromCartAction, RemoveAllBooksFromCartAction } from '../../actions/cart.actions';
 import { selectAllCartItems } from '../../reducers/cart.reducer';
 import { AddMultipleToCollectionAction } from '../../actions/collection.actions';
@@ -129,12 +131,12 @@ export class MyCartComponent implements OnInit, OnDestroy {
     }
   }
 
-  getStoreObj() {
+  getStoreObj():Store<{CartState, CollectionState, addressList: Address[]}> {
     return this.store;
   }
 
   ngOnDestroy() {
-    // UnSubscribing all redux subscribers to avpoid memory leaks
+    // UnSubscribing all redux subscribers to avoid memory leaks
     if( this.cartSub ) {
       this.cartSub.unsubscribe();
       this.collectionSub.unsubscribe();
