@@ -16,7 +16,15 @@
     },
     "book-store-e2e": {
       "tags": [],
-      "implicitDependencies": ["book-store"]
+      "implicitDependencies": [
+        "book-store"
+      ]
+    },
+    "apps-proxy-server": {
+      "tags": []
+    },
+    "proxy-server": {
+      "tags": []
     }
   }
 }

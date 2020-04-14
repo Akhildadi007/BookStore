@@ -2,6 +2,8 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
+import {Book} from '../models/book'
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,8 @@ import { Observable } from 'rxjs';
 export class BookApiService {
 
   constructor(private http:HttpClient) { }
-
+  private fetchBooksURL = environment.urlLinks.localhostBooksFetch;
   searchBooks(searchString:string): Observable<any> {
-    return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchString}&key=AIzaSyCp0eK9W8R_LmhNx8baXA6mfdNy12FKFU0`)
+    return this.http.get<Book[]>( this.fetchBooksURL.replace("#", searchString) );
   }
 }
